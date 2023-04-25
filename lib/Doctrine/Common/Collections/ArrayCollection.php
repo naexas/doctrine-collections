@@ -30,6 +30,11 @@ use Doctrine\Common\Collections\Expr\ClosureExpressionVisitor;
  * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  * @author Jonathan Wage <jonwage@gmail.com>
  * @author Roman Borschel <roman@code-factory.org>
+ *
+ * @template TKey of array-key
+ * @template T
+ * @template-implements Collection<TKey,T>
+ * @template-implements Selectable<TKey,T>
  */
 class ArrayCollection implements Collection, Selectable
 {
@@ -37,6 +42,8 @@ class ArrayCollection implements Collection, Selectable
      * An array containing the entries of this collection.
      *
      * @var array
+     *
+     * @psalm-var array<TKey,T>
      */
     private $elements;
 
@@ -44,6 +51,8 @@ class ArrayCollection implements Collection, Selectable
      * Initializes a new ArrayCollection.
      *
      * @param array $elements
+     *
+     * @psalm-param array<TKey,T> $elements
      */
     public function __construct(array $elements = array())
     {
@@ -281,6 +290,8 @@ class ArrayCollection implements Collection, Selectable
 
     /**
      * {@inheritDoc}
+     *
+     * @return static
      */
     public function map(Closure $func)
     {
@@ -289,6 +300,10 @@ class ArrayCollection implements Collection, Selectable
 
     /**
      * {@inheritDoc}
+     *
+     * @return static
+     *
+     * @psalm-return ArrayCollection<TKey,T>
      */
     public function filter(Closure $p)
     {
