@@ -41,18 +41,14 @@ class ArrayCollection implements Collection, Selectable
     /**
      * An array containing the entries of this collection.
      *
-     * @var array
-     *
-     * @psalm-var array<TKey,T>
+     * @var array<TKey,T>
      */
     private $elements;
 
     /**
      * Initializes a new ArrayCollection.
      *
-     * @param array $elements
-     *
-     * @psalm-param array<TKey,T> $elements
+     * @param array<TKey,T> $elements
      */
     public function __construct(array $elements = array())
     {
@@ -301,9 +297,7 @@ class ArrayCollection implements Collection, Selectable
     /**
      * {@inheritDoc}
      *
-     * @return static
-     *
-     * @psalm-return ArrayCollection<TKey,T>
+     * @return ArrayCollection<TKey,T>
      */
     public function filter(Closure $p)
     {
